@@ -1,0 +1,27 @@
+version: "3"
+services:
+  vue:
+    image: vue:latest
+    container_name: vue
+    command: npm run serve
+    # command: bash
+    tty: true
+    working_dir: /source
+    volumes:
+      - ./vue/source:/source
+    ports:
+      - 28080:8080
+    environment:
+      - HOST=0.0.0.0
+    working_dir: /source/perftest
+  react:
+    image: react:latest
+    container_name: react
+    command: npm start
+    # command: bash
+    tty: true
+    volumes:
+      - ./react/source:/source
+    ports:
+      - 13000:3000
+    working_dir: /source/perftest
