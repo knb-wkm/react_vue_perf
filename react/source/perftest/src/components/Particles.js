@@ -1,4 +1,4 @@
-import React, {Component, useState, useEffect} from 'react';
+import React, { Component } from 'react';
 
 class ParticleObject {
   constructor(x, y, key) {
@@ -30,15 +30,13 @@ class ParticleObject {
   }
 }
 
-const emitOnFrame = 3
+const emitOnFrame = 30
 
 class Particles extends Component {
   constructor(props) {
     super(props)
     this.state = {
       particles: [],
-      innerWidth: window.innerWidth,
-      innerHeight: window.innerHeight,
       counter: 0
     }
   }
@@ -55,8 +53,8 @@ class Particles extends Component {
     for (let i = 0; i < emitOnFrame; i++) {
       particles.push(
         new ParticleObject(
-          this.state.innerWidth / 2,
-          this.state.innerHeight / 4,
+          window.innerWidth / 2,
+          window.innerHeight / 4,
           this.counter++
         )
       )
@@ -69,21 +67,13 @@ class Particles extends Component {
       }
     })
 
-    if(this.state.innerWidth !== window.innerWidth){
-      this.setState({innerWidth: window.innerWidth})
-    }
-
-    if(this.state.innerHeight !== window.innerHeight) {
-      this.setState({innerHeight: window.innerHeight})
-    }
-
     this.setState({ particles })
   }
 
   render() {
     return (
       <div>
-        <svg width={this.state.innerWidth} height={this.state.innerHeight}>
+        <svg width={window.innerWidth} height={window.innerHeight}>
           {this.state.particles.map( particle => {
             return (
               <g>

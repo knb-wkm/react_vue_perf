@@ -50,7 +50,7 @@
   }
 
   let count = 0
-  const emitOnFrame = 20
+  const emitOnFrame = 30
 
   export default {
     name: 'app',
@@ -62,6 +62,8 @@
       }
     },
     mounted: function () {
+      this.innerWidth = window.innerWidth;
+      this.innerHeight = window.innerHeight;
       setInterval(this.tick, 1000 / 60)
     },
     methods: {
@@ -82,12 +84,7 @@
             particles.splice(index, 1)
           }
         })
-        if(this.innerWidth !== window.innerWidth){
-          this.innerWidth = window.innerWidth;
-        }
-        if(this.innerHeight !== window.innerHeight){
-          this.innerHeight = window.innerHeight;
-        }
+
         this.particles = particles;
       }
     }
